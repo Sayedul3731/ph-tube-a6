@@ -13,6 +13,28 @@ const loadData = async () => {
 const technologyDisplay = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
-    console.log(data);
+    const technologies = data.data;
+    console.log(technologies);
+    const technologiesContainer = document.getElementById('technologies-container');
+    technologies.forEach( technology => {
+        const technologyCard = document.createElement('div');
+        technologyCard.innerHTML = `
+                        <div class="card  bg-base-100 shadow-xl p-4">
+                            <figure><img src="${technology.thumbnail}" alt="Shoes" /></figure>
+                            <div class="card-body">
+                                    <h2 class="card-title">Shoes!</h2>
+                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <div class="card-actions justify-end">
+                                    <button class="btn btn-primary">Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+        `;
+        technologiesContainer.appendChild(technologyCard)
+    })
+  
+    
+
+    
 }
 loadData()
