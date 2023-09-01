@@ -6,8 +6,13 @@ const loadData = async () => {
     technologies.forEach( technology => {
         console.log(technology);
         const div = document.createElement('div');
-        div.innerHTML = `<button class="btn hover:bg-[#FF1F3D] hover:text-white">${technology.category}</button>`;
+        div.innerHTML = `<button onclick="technologyDisplay('${technology.category_id}')" class="btn hover:bg-[#FF1F3D] hover:text-white">${technology.category}</button>`;
         technologiesBtnContainer.appendChild(div);
     });
+}
+const technologyDisplay = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
+    const data = await res.json();
+    console.log(data);
 }
 loadData()
