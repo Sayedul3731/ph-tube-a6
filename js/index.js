@@ -28,13 +28,12 @@ const technologyDisplay = async (id) => {
                         <div class="card  bg-base-100 shadow-xl p-4">
                             <figure><img src="${technology.thumbnail}" alt="technology-photo" /></figure>
                             <div class="card-body">
-                                   <div>
-                                   <img src="" />
-                                   <p></p>
+                                   <div class="flex text-center justify-center">
+                                   <img class="w-12 h-12 rounded-full" src="${technology.authors[0].profile_picture}" />
+                                   <p class="mt-3 font-medium">${technology.title}</p>
                                    </div>
-                                <div class="card-actions justify-end">
-                                    <button class="btn btn-primary">Buy Now</button>
-                                </div>
+                                   <p>${technology.authors[0].profile_name}</p>
+                                   <p></p>
                             </div>
                         </div>
         `;
