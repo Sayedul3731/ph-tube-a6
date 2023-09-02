@@ -17,23 +17,18 @@ const technologyDisplay = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     const technologies = data.data;
-    console.log(technologies);
     const technologiesContainer = document.getElementById('technologies-container');
     const technologiesContainer2 = document.getElementById('technologies-container-2')
     technologiesContainer.textContent = '';
     technologiesContainer2.textContent = '';
-    // const dateContainer = document.getElementById('date-container');
-    // console.log(dateContainer.innerText);
     if (technologies.length !== 0) {
         technologies.forEach(technology => {
-            const postedDate = technology.others.posted_date;
-            console.log(postedDate);
             const technologyCard = document.createElement('div');
             technologyCard.innerHTML = `
                             <div class="card h-96 bg-base-100 shadow-xl p-4 relative">
                                 <figure><img class="" src="${technology.thumbnail}" alt="technology-photo" /></figure>
-                                <div id="date-container" class="bg-gray-500 text-white absolute mt-28 ml-32 md:mt-36 md:ml-48 lg:mt-36 lg:ml52 px-1 py-1 rounded-sm">
-                                ${technology.others.posted_date ? ((technology.others.posted_date / 60)/60).toFixed(2).split('.')[0] + 'hour' + ' ' + ((technology.others.posted_date / 60)/60).toFixed(2).split('.')[1] + 'min' : ''}
+                                <div id="date-container" class="bg-gray-500 text-white absolute mt-28 ml-32 md:mt-36 md:ml-44 lg:mt-36 lg:ml52 px-1 py-1 rounded-sm">
+                                ${technology.others.posted_date ? ((technology.others.posted_date / 60)/60).toFixed(2).split('.')[0] + 'hrs' + ' ' + ((technology.others.posted_date / 60)/60).toFixed(2).split('.')[1] + ' ' + 'min' + ' ' + 'ago' : ''}
                                 </div>
                                 <div class="card-body">
                                        <div class="flex text-left justify-first -ml-7 gap-5">
@@ -60,4 +55,15 @@ const technologyDisplay = async (id) => {
         technologiesContainer2.appendChild(div)
     }
 }
+const sortByView = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
+    const data = await res.json();
+    const technologies = data.data;
+    console.log(technologies);
+    technologies.forEach(technology => {
+        console.log(technology);
+    })
+    
+}
+
 loadData()

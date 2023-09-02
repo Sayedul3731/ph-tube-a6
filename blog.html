@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        h2{
+            margin-left: 20px;
+        }
+        h3{
+            margin-left: 30px;
+        }
+        p{
+            margin-left: 50px;
+        }
+        h4{
+            margin-left: 30px;
+        }
+        ul{
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blog Page</h1>
+    <div>
+        <h2>Discuss the scope of var, let and const</h2>
+        <p>Scope determines the accessibility of variables.
+            There are three types of scope in JavaScript. <br>
+            They are 
+            <ul>
+                <li>Block Scope</li>
+                <li>Function Scope</li>
+                <li>Global Scope</li>
+            </ul>
+        </p>
+        <h4>Block Scope:</h4>
+        <p>If you declare a variable with let and const inside a {} block you cannot access it from outside the block.
+            But if declare with var you can access it from outside the block. Because var is not a block scope where let and const are clock scope.
+        </p>
+        <h4>Global Scope:</h4>
+        <p>Which variables declare outside of a function or block scope that is Global.
+            Global variable can be accessed form anywhere in a JavaScript Program.
+            If you declare a variable with var, let or const outside of a block scope or function scope that is global scope and you can access this variable from anywhere of JavaScript Program.
+            So var, let and const they all are Global Scope.
+        </p>
+        <h4>Function Scope:</h4>
+        <p>If you declare a variable with var, let or const in a function you cannot access from the outside of the function. Because every function create a new scope.
+            So var, let and const they all are function scope.
+        </p>
+    </div>
+    <div>
+        <h2>The use cases of null and undefined:</h2>
+        <h4>Null:</h4>
+        <p>Null in JavaScript means an empty value.
+            Null is basically an assignment value given to a variable. when we assign null as a value to any variable, it means that it is empty or blank. It is show that the variable has no value.
+        </p>
+        <h4>Undefined:</h4>
+        <p>Undefined means 'not defined'. If we declare a variable but do not assign a value to it, that called undefined.
+        </p>
+
+    </div>
+    <div>
+        <h2>REST API:</h2>
+        <P>REST API means Representational State Transfer Application Programming Interface.
+            An API, or application programming interface, is a set of rules that define how applications or devices can connect to and communicate with each other. REST API confirms to the design principles of the representational state transfer architectural style.
+        </P>
+    </div>
+</body>
+</html>
