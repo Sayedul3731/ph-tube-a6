@@ -10,24 +10,27 @@ const loadData = async () => {
         technologiesBtnContainer.appendChild(div);
     });
     technologyDisplay(technologies[0].category_id)
+   
 }
-
 // technologyDisplay function here 
 const technologyDisplay = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     const technologies = data.data;
+        console.log(technologies);
+        // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
     const technologiesContainer = document.getElementById('technologies-container');
     const technologiesContainer2 = document.getElementById('technologies-container-2')
     technologiesContainer.textContent = '';
     technologiesContainer2.textContent = '';
     if (technologies.length !== 0) {
+        // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
         technologies.forEach(technology => {
             const technologyCard = document.createElement('div');
             technologyCard.innerHTML = `
                             <div class="card h-96 bg-base-100 shadow-xl p-4 relative">
                                 <figure><img class="" src="${technology.thumbnail}" alt="technology-photo" /></figure>
-                                <div id="date-container" class="bg-gray-500 text-white absolute mt-28 ml-32 md:mt-36 md:ml-44 lg:mt-36 lg:ml52 px-1 py-1 rounded-sm">
+                                <div id="date-container" class="bg-gray-500 text-white absolute mt-28 ml-28 md:mt-28 md:ml-28 lg:mt-36 lg:ml-44 px-1 py-1 rounded-sm">
                                 ${technology.others.posted_date ? ((technology.others.posted_date / 60)/60).toFixed(2).split('.')[0] + 'hrs' + ' ' + ((technology.others.posted_date / 60)/60).toFixed(2).split('.')[1] + ' ' + 'min' + ' ' + 'ago' : ''}
                                 </div>
                                 <div class="card-body">
@@ -50,20 +53,35 @@ const technologyDisplay = async (id) => {
     } else {
         const div = document.createElement('div');
         div.innerHTML = `
-        <div class="mt-10 md:mt-36 lg:44"> <img class="w-32 mx-auto" src="Icon.png"/> 
+        <div class="mt-10 md:mt-32 lg:44"> <img class="w-32 mx-auto" src="./Icon.png"/> 
         <p class="text-3xl font-medium my-10">Oops!! Sorry, There is no content.</p></div>`;
         technologiesContainer2.appendChild(div)
     }
+    
 }
-const sortByView = async (id) => {
+let technoData = [];
+const dataLoadByView = async () => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/videos/categories`);
+    const data = await res.json();
+    let technologyData = []
+   data.data.forEach(techno =>
+    technologyData.push(techno)
+ );
+ console.log(technologyData);
+ technologyData.forEach(technology => 
+    // console.log(technology)
+    displayDataByView(technology.category_id)
+    )
+    // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
+    // technologyDisplay(id)
+    // displayDataByView(technologyData.category_id)
+}
+const displayDataByView = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
-    const technologies = data.data;
-    console.log(technologies);
-    technologies.forEach(technology => {
-        console.log(technology);
-    })
-    
+    const technology = data.data;
+    console.log(technology);
+// console.log(technoData);
 }
 
 loadData()
