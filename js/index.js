@@ -7,29 +7,25 @@ const loadData = async () => {
     technologies.forEach(technology => {
         const div = document.createElement('div');
         div.innerHTML = `<button onclick="technologyDisplay('${technology.category_id}')" class="btn hover:bg-[#FF1F3D] hover:text-white">${technology.category}</button>`;
-        technologiesBtnContainer.appendChild(div);
+        technologiesBtnContainer.appendChild(div); 
     });
     technologyDisplay(technologies[0].category_id)
-    
-   
 }
+
 let technoDataArray = [];
+
 // technologyDisplay function here 
 const technologyDisplay = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     const technologies = data.data;
-    console.log(technologies);
-        // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
-        technoDataArray.push(technologies)
-      
     const technologiesContainer = document.getElementById('technologies-container');
     const technologiesContainer2 = document.getElementById('technologies-container-2')
     technologiesContainer.textContent = '';
     technologiesContainer2.textContent = '';
     if (technologies.length !== 0) {
-        // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
         technologies.forEach(technology => {
+            technoDataArray.push(technology)
             const technologyCard = document.createElement('div');
             technologyCard.innerHTML = `
                             <div class="card h-96 bg-base-100 shadow-xl p-4 relative">
@@ -62,16 +58,17 @@ const technologyDisplay = async (id) => {
         technologiesContainer2.appendChild(div)
     }   
 }
+
+// displayDataByView function here 
 const displayDataByView = () => {
+    console.log(technoDataArray.length);
     const technologiesContainer = document.getElementById('technologies-container');
     const technologiesContainer2 = document.getElementById('technologies-container-2')
     technologiesContainer.textContent = '';
     technologiesContainer2.textContent = '';
-    console.log(technoDataArray[0]);
-    technoDataArray[0].sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views));
-    if (technoDataArray[0].length !== 0) {
-        // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
-        technoDataArray[0].forEach(technology => {
+    technoDataArray.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views));
+    if (technoDataArray.length !== 0) {
+        technoDataArray.forEach(technology => {
             const technologyCard = document.createElement('div');
             technologyCard.innerHTML = `
                             <div class="card h-96 bg-base-100 shadow-xl p-4 relative">
@@ -96,21 +93,13 @@ const displayDataByView = () => {
             `;
             technologiesContainer.appendChild(technologyCard)
         })
+        technoDataArray.length = 0;
     } else {
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="mt-10 md:mt-32 lg:44"> <img class="w-32 mx-auto" src="./Icon.png"/> 
         <p class="text-3xl font-medium my-10">Oops!! Sorry, There is no content.</p></div>`;
         technologiesContainer2.appendChild(div)
-    }  
-    // technoDataArray[0].sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views));
-    // technologyDisplay()
-
-
+    }   
 }
-// const displayDataByView = async () => {
-   
-// }
-
-
 loadData()
