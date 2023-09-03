@@ -13,7 +13,7 @@ const loadData = async () => {
     
    
 }
-let technoData = [];
+let technoDataArray = [];
 // technologyDisplay function here 
 const technologyDisplay = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
@@ -21,7 +21,7 @@ const technologyDisplay = async (id) => {
     const technologies = data.data;
     console.log(technologies);
         // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
-        technoData.push(technologies)
+        technoDataArray.push(technologies)
       
     const technologiesContainer = document.getElementById('technologies-container');
     const technologiesContainer2 = document.getElementById('technologies-container-2')
@@ -62,16 +62,16 @@ const technologyDisplay = async (id) => {
         technologiesContainer2.appendChild(div)
     }   
 }
-const displayData = () => {
+const displayDataByView = () => {
     const technologiesContainer = document.getElementById('technologies-container');
     const technologiesContainer2 = document.getElementById('technologies-container-2')
     technologiesContainer.textContent = '';
     technologiesContainer2.textContent = '';
-    console.log(technoData[0]);
-    technoData[0].sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views));
-    if (technoData[0].length !== 0) {
+    console.log(technoDataArray[0]);
+    technoDataArray[0].sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views));
+    if (technoDataArray[0].length !== 0) {
         // technologies.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
-        technoData[0].forEach(technology => {
+        technoDataArray[0].forEach(technology => {
             const technologyCard = document.createElement('div');
             technologyCard.innerHTML = `
                             <div class="card h-96 bg-base-100 shadow-xl p-4 relative">
@@ -103,6 +103,10 @@ const displayData = () => {
         <p class="text-3xl font-medium my-10">Oops!! Sorry, There is no content.</p></div>`;
         technologiesContainer2.appendChild(div)
     }  
+    // technoDataArray[0].sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views));
+    // technologyDisplay()
+
+
 }
 // const displayDataByView = async () => {
    
